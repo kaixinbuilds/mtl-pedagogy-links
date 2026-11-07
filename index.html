@@ -70,7 +70,7 @@ footer p{max-width:80ch;margin:0 0 8px}
 <div class="wrap">
 <header>
 <h1>MTL Pedagogy Links</h1>
-<p class="lede">Where to read about how each exam component is taught in Chinese, Malay and Tamil, starting with G3. Pick a cell in the table to see its links.</p>
+<p class="lede">Where to read about how each exam component is taught in Chinese, Malay and Tamil, at G3, G2, G1 and HMT. Pick a cell in the table to see its links.</p>
 <div class="policy"><p><strong>Links only.</strong> Nothing here reproduces a paper, slide or abstract. Each source stays on its publisher's site, under its own login where it has one. Notes are short descriptions written for this page.</p></div>
 </header>
 
@@ -88,6 +88,7 @@ footer p{max-width:80ch;margin:0 0 8px}
 <div class="grp" id="f-lang" role="group" aria-label="Language"><span>Language</span></div>
 <div class="grp" id="f-lvl" role="group" aria-label="Level"><span>Level</span></div>
 </div>
+<p class="note" id="lvnote" style="margin:0 0 10px" hidden></p>
 <p id="count" aria-live="polite"></p>
 <ul class="list" id="list"></ul>
 <div id="cross"></div>
@@ -101,7 +102,7 @@ footer p{max-width:80ch;margin:0 0 8px}
 </main>
 
 <footer>
-<p><strong>How items were sorted.</strong> Conference items are filed by title, without reading the full paper, so check the fit before you rely on one. The G3 tag marks sources that name G3, and Express sources as the closest match from the older courses. Levels marked Sec or Pri come from the presenting school or the title.</p>
+<p><strong>How items were sorted.</strong> Conference items are filed by title, and some levels come from the public abstract, without reading the full paper, so check the fit before you rely on one. The G3 tag marks sources that name G3, and Express sources as the closest match from the older courses. Levels marked Sec or Pri come from the presenting school or the title.</p>
 <p><strong>Evidence tags.</strong> Meta-analysis: pooled review of many studies. Singapore: a study set in Singapore. L2 elsewhere: second-language study outside Singapore MTL. L1 elsewhere: first-language study outside Singapore. Practice: teacher sharing or theory. Official: MOE, SEAB or a language centre.</p>
 <p>Links checked 7 Nov 2026. Rights in every linked work stay with its owners.</p>
 </footer>
@@ -111,7 +112,8 @@ footer p{max-width:80ch;margin:0 0 8px}
 const COMPS=[["fw","Functional writing"],["comp","Composition"],["la","Language application"],["mcq","Comprehension (MCQ)"],["oe","Comprehension (open-ended)"],["ra","Oral: reading aloud"],["lc","Listening comprehension"]];
 const EXTRA=[["sp","Related: spoken interaction"]];
 const LANGS=["CL","ML","TL"];
-const LVLS=[["all","All levels"],["g3","G3 named"],["sec","Secondary"],["pri","Primary"]];
+const LVLS=[["all","All levels"],["g3","G3"],["g2","G2"],["g1","G1"],["hmt","HMT"],["sec","Secondary"],["pri","Primary"]];
+const LVRE={g2:/G2|N\(A\)|Normal \(Academic\)/,g1:/G1|N\(T\)|Normal \(Technical\)/,hmt:/HMT|HCL|HML|HTL|Higher/};
 const conf=id=>"https://tlcsl.sccl.sg/microabstract.aspx?abstractId="+id;
 const sbm=k=>"https://sites.google.com/view/sbm2026/kumpulan-"+k;
 const sb=s=>"https://www.sccl.sg/zh/research/sccl-school-based-research/"+s;
@@ -124,15 +126,15 @@ const D=[
 {l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"运用人工智能结构反馈提升学生PEEL段落写作能力的教学实践",u:conf(281),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"通过AIMS和ACT框架提升学生反馈素养——记叙文“详略得当”写作教学实践分享",u:conf(422),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"运用人工智能教育工具促进元认知发展与深化议论文写作学习",u:conf(408),a:"open",e:"Practice",s:C26},
-{l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"圈内与圈外：AI辅助华文议论写作教学中教师角色的动态转换",u:conf(364),a:"open",e:"Practice",s:C26},
-{l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"影子神话：悟空——融合多元智能与人工智能的中学华文叙事写作教学实践研究",u:conf(352),a:"open",e:"Practice",s:C26},
+{l:"CL",c:["comp"],v:"sec",lv:"HCL",t:"圈内与圈外：AI辅助华文议论写作教学中教师角色的动态转换",u:conf(364),a:"open",e:"Practice",s:C26},
+{l:"CL",c:["comp"],v:"sec",g3:1,lv:"G3",t:"影子神话：悟空——融合多元智能与人工智能的中学华文叙事写作教学实践研究",u:conf(352),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"AIMS支持下的差异化写作评估与反馈实践——以新加坡中学华文写作为例",u:conf(432),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["comp"],v:"sec",lv:"Sec",t:"新加坡人工智能作文评改系统（AIMS）的应用效能与未来展望",u:conf(412),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["comp"],v:"sec",lv:"Level not named",t:"在写作反馈循环中强化学生的主体性： 人工智能情境下反馈向学习的转化",u:conf(452),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["comp","oe"],v:"sec",lv:"G2",t:"鹰架支持在中学G2华文阅读与写作教学中的形态研究",u:conf(400),a:"open",e:"Singapore",s:C26},
-{l:"CL",c:["oe","mcq"],v:"sec",lv:"Sec",t:"AI时代下相互教学法在中学华文阅读理解教学中的应用与效能探究",u:conf(415),a:"open",e:"Practice",s:C26,n:"Reciprocal teaching in secondary comprehension."},
+{l:"CL",c:["oe","mcq"],v:"sec",g3:1,lv:"G3, HCL",t:"AI时代下相互教学法在中学华文阅读理解教学中的应用与效能探究",u:conf(415),a:"open",e:"Practice",s:C26,n:"Reciprocal teaching in secondary comprehension."},
 {l:"CL",c:["la"],v:"sec",lv:"Sec",t:"从理解到迁移：人工智能辅助下的词语分层教学实践",u:conf(301),a:"open",e:"Practice",s:C26,n:"Tiered vocabulary teaching."},
-{l:"CL",c:["sp"],v:"sec",lv:"Sec",t:"新加坡华文口语教学中的反馈循环设计——人工智能辅助环境下的教学实践与优化",u:conf(416),a:"open",e:"Practice",s:C26},
+{l:"CL",c:["sp"],v:"sec",lv:"G2",t:"新加坡华文口语教学中的反馈循环设计——人工智能辅助环境下的教学实践与优化",u:conf(416),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["sp"],v:"sec",lv:"Sec",t:"AI口语练习平台在中学华文口试中的应用研究——基于自我调控学习循环模型的实践",u:conf(286),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["sp"],v:"sec",lv:"G2, G1",t:"做中学，说中练：AI赋能任务型口语教学的课堂实践——以G2/G1 口语教学为例",u:conf(354),a:"open",e:"Practice",s:C26},
 {l:"CL",c:["sp"],v:"sec",lv:"HCL",t:"借力Edcafe Chatbot：中学高华口试元认知与逻辑建构的培养策略与实践",u:conf(317),a:"open",e:"Practice",s:C26},
@@ -203,11 +205,57 @@ const D=[
 {l:"TL",c:["gen"],v:"all",lv:"All levels",t:"Professional Learning Community for TL Teachers",u:"https://www.opal2.moe.edu.sg/csl/s/b6500112-8050-4d9f-9e1a-5449775f5569/",a:"login",e:"Practice",s:"OPAL",n:"The most active TL space found. You may need to join to see the materials."},
 {l:"TL",c:["comp"],v:"all",lv:"Level not named",t:"Strategies to teach Composition in Tamil Language",u:"https://www.opal2.moe.edu.sg/csl/s/bc83206e-6dd5-4a1a-ba06-5c6d923280f4/",a:"login",e:"Practice",s:"OPAL",n:"Small community. Contents not checked."},
 {l:"TL",c:["la"],v:"all",lv:"Level not named",t:"Tamil Grammar community",u:"https://www.opal2.moe.edu.sg/csl/s/cde4a383-0d43-4507-bf17-7ed603a3d04d/",a:"login",e:"Practice",s:"OPAL",n:"Small community. Contents not checked."},
+/* ---------- CL: SCCL 2023 conference, secondary ---------- */
+{l:"CL",c:["comp"],v:"sec",lv:"G2",t:"运用学生学习平台（SLS）进行差异化教学 ---以中三普通学术课程议论性文体教学为例",u:conf(136),a:"open",e:"Practice",s:"SCCL 2023 conference",n:"Sec 3 N(A), the closest match to G2."},
+{l:"CL",c:["sp"],v:"sec",lv:"G2",t:"通过搭建学习鹰架提升学生的口语表达能力",u:conf(161),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["sp"],v:"sec",g3:1,lv:"G2, G3",t:"通过同侪互评与自评提升中学生的华语口语能力",u:conf(137),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["fw","comp"],v:"sec",lv:"HCL",t:"探讨以科技辅助的同侪互评对中一高华学生情境作文写作能力的效用",u:conf(90),a:"open",e:"Practice",s:"SCCL 2023 conference",n:"Sec 1 HCL situational writing with peer review."},
+{l:"CL",c:["la"],v:"sec",lv:"HCL",t:"合理应用科技辅助教学——以中学高华词语和成语教学为例",u:conf(178),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["sp"],v:"sec",lv:"HCL",t:"鹰架教学和归纳推理视角下的口头报告",u:conf(121),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["comp"],v:"sec",g3:1,lv:"G3, HCL",t:"基于可视化的思维培养议论文的写作能力",u:conf(198),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["comp"],v:"sec",g3:1,lv:"G3, HCL",t:"以学习为导向的评价”的中学课堂实践——以中三课程议论文单元为例",u:conf(232),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["comp"],v:"sec",g3:1,lv:"G3",t:"反馈可视化的成效——以记叙文写作教学为例",u:conf(153),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["comp","oe"],v:"sec",g3:1,lv:"G3",t:"SOLO分类评价理论在华文阅读教学和写作教学中的运用 --- 中学景物描写教学设计初探",u:conf(207),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["la"],v:"sec",g3:1,lv:"G3",t:"多管齐下促进学生对字词的理解、记忆与应用 —— 字符拆分功能、打油诗、密室逃脱游戏在词语教学中的综合应用",u:conf(176),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["sp"],v:"sec",g3:1,lv:"G3",t:"通过模拟新闻主持人提升学生的口语表达能力",u:conf(134),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["oe","mcq"],v:"sec",lv:"Sec",t:"基于“扶放有度”支架式教学模式的阅读理解教学设计",u:conf(164),a:"open",e:"Practice",s:"SCCL 2023 conference"},
+{l:"CL",c:["oe","mcq"],v:"sec",lv:"Sec",t:"运用SOLO分类理论建构阅读理解教学框架",u:conf(160),a:"open",e:"Practice",s:"SCCL 2023 conference"},
 /* ---------- Research and official documents ---------- */
+{l:"CL",c:["gen"],v:"sec",lv:"G2",t:"SEC G2 (2027) Chinese Language syllabus, K220",u:"https://isomer-user-content.by.gov.sg/334/f8644eca-cac1-4d39-92df-287e51e3e644/K220_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"ML",c:["gen"],v:"sec",lv:"G2",t:"SEC G2 (2027) Malay Language syllabus, K221",u:"https://isomer-user-content.by.gov.sg/334/9f22f398-ac0a-4b3f-9883-2c51d1032b6d/K221_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"TL",c:["gen"],v:"sec",lv:"G2",t:"SEC G2 (2027) Tamil Language syllabus, K222",u:"https://isomer-user-content.by.gov.sg/334/3195b526-4121-47bf-beba-ef8c8bbec0a5/K222_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"CL",c:["gen"],v:"sec",lv:"G1",t:"SEC G1 (2027) Chinese Language syllabus, K120",u:"https://isomer-user-content.by.gov.sg/334/9bad90d0-4bf9-4731-ad56-fe012915c5ff/K120_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"ML",c:["gen"],v:"sec",lv:"G1",t:"SEC G1 (2027) Malay Language syllabus, K121",u:"https://isomer-user-content.by.gov.sg/334/b55cb067-9c16-4f27-a1d8-8b6ef7259f16/K121_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"TL",c:["gen"],v:"sec",lv:"G1",t:"SEC G1 (2027) Tamil Language syllabus, K122",u:"https://isomer-user-content.by.gov.sg/334/09b55f7d-b6a8-41ce-bf1e-eaf34560f26c/K122_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"CL",c:["gen"],v:"sec",lv:"HMT",t:"SEC G3 (2027) Higher Chinese syllabus, K355",u:"https://isomer-user-content.by.gov.sg/334/08e502f3-205d-41c0-91e5-0a6a5b86326f/K355_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"ML",c:["gen"],v:"sec",lv:"HMT",t:"SEC G3 (2027) Higher Malay syllabus, K356",u:"https://isomer-user-content.by.gov.sg/334/15582317-49e6-4754-8a93-f02bd8191851/K356_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"TL",c:["gen"],v:"sec",lv:"HMT",t:"SEC G3 (2027) Higher Tamil syllabus, K357",u:"https://isomer-user-content.by.gov.sg/334/304dd1a6-7e79-467a-bb8b-ace9024403a7/K357_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
+{l:"ALL",c:["gen"],v:"sec",lv:"G1",t:"SEC 2027 G1 syllabuses for school candidates",u:"https://www.seab.gov.sg/secondary-education-certificate-sec/g1-syllabuses-for-school-candidates-2027/",a:"open",e:"Official",s:"SEAB",n:"Index page."},
+{l:"ALL",c:["gen"],v:"sec",lv:"G2",t:"SEC 2027 G2 syllabuses for school candidates",u:"https://www.seab.gov.sg/secondary-education-certificate-sec/g2-syllabuses-for-school-candidates-2027/",a:"open",e:"Official",s:"SEAB",n:"Index page."},
+{l:"CL",c:["gen"],v:"sec",lv:"G1, G2, HMT, Chinese B",t:"Sun & Aw (2024). 新加坡中学华文一体化课文的可读性",u:"https://hdl.handle.net/10497/28083",a:"open",e:"Singapore",s:"华文学刊",n:"Compares text readability across CL courses."},
+{l:"CL",c:["gen"],v:"sec",lv:"G1, G2, HMT, Chinese B",t:"Sun, Aw & Lee (2025). Readability of the integrated texts of Singapore secondary Chinese language syllabus",u:"https://doi.org/10.1007/978-981-96-7625-5_12",a:"pay",e:"Singapore",s:"Springer",n:"Compares 2011 and 2021 textbooks across courses."},
+{l:"CL",c:["comp","fw"],v:"sec",lv:"G2 (Normal)",t:"Cai (2016). 通过写作中的互评促进写作监控意识实验研究",u:"https://hdl.handle.net/10497/18041",a:"nie",e:"Singapore",s:"NIE thesis",n:"Peer assessment in process writing."},
+{l:"CL",c:["lc"],v:"sec",g3:1,lv:"HCL, Express, G2 (Normal)",t:"Huang (2016). 华语广播剧作为听力教学资源的调查研究",u:"https://hdl.handle.net/10497/18053",a:"nie",e:"Singapore",s:"NIE thesis",n:"Radio drama as listening input, 26 students."},
+{l:"CL",c:["oe"],v:"sec",lv:"HCL",t:"Wang (2016). 戏剧教学策略对于发展学生文学阅读力的作用",u:"https://hdl.handle.net/10497/18086",a:"nie",e:"Singapore",s:"NIE thesis",n:"Drama teaching and literary reading."},
+{l:"CL",c:["la"],v:"sec",lv:"HCL",t:"Cao (2013). 新加坡二语学习者汉语虚词偏误分析",u:"https://hdl.handle.net/10497/13634",a:"nie",e:"Singapore",s:"NIE thesis",n:"Function-word errors, with teaching suggestions."},
+{l:"CL",c:["comp"],v:"sec",lv:"HCL",t:"Puah & Tan (2015). 中学华文创意写作教学研究",u:"https://hdl.handle.net/10497/25938",a:"rec",e:"Singapore",s:"Book chapter",n:"One-year creative writing study."},
+{l:"CL",c:["la"],v:"sec",lv:"Chinese B",t:"Aw & Han (2016). 生词英译对华语知识学习的监控作用",u:"https://doi.org/10.1558/rtcfl.31835",a:"pay",e:"Singapore",s:"Researching and Teaching Chinese as a Foreign Language",n:"English glosses and self-directed vocabulary learning."},
+{l:"CL",c:["sp"],v:"sec",lv:"Chinese B",t:"Tan et al. (2011). 中学华文B多媒体资源教师手册",u:"https://hdl.handle.net/10497/25920",a:"rec",e:"Singapore",s:"Teacher handbook"},
+{l:"CL",c:["oe","mcq","sp","lc"],v:"pri",lv:"Pri low-progress, indirect for G1",t:"Goh & Zhao (2025). Understanding oral and written proficiency of low-progress Chinese language learners in Singapore",u:"https://doi.org/10.1007/978-981-96-7625-5_5",a:"pay",e:"Singapore",s:"Springer",n:"Primary, so an indirect guide for G1."},
+{l:"ML",c:["sp"],v:"sec",lv:"G1 (Normal Technical)",t:"Effendy Ahmadi (2011). Analisis wacana kritis: Kuasa dalam bilik darjah",u:"https://hdl.handle.net/10497/4593",a:"nie",e:"Singapore",s:"NIE thesis",n:"Classroom talk analysis."},
+{l:"TL",c:["la"],v:"sec",lv:"G1, G2, HTL (Sec 3)",t:"Kingston Pal Thamburaj & Ramesh (2026). Stream-aware vocabulary demands in Singapore secondary Tamil textbooks",u:"https://doi.org/10.3390/educsci16081270",a:"chk",e:"Singapore",s:"Education Sciences",n:"Vocabulary demands across Sec 3 streams."},
+{l:"TL",c:["oe","mcq"],v:"sec",g3:1,lv:"G2, Express, HTL (Sec 3)",t:"Manjula Ramasamy (2026). Critical reading and its impact on diverse learners of Tamil language",u:"https://hdl.handle.net/10497/33934",a:"open",e:"Singapore",s:"NIE doctoral thesis",n:"Critical-reading intervention across three course levels. Strongest TL comprehension find so far."},
+{l:"TL",c:["sp"],v:"sec",lv:"G1, G2",t:"Umayalambigai Ramakrishnan (2022). Discourse analysis in Singapore secondary school Tamil classrooms",u:"https://hdl.handle.net/10497/24068",a:"nie",e:"Singapore",s:"NIE doctoral thesis",n:"Classroom talk in reading lessons, across streams."},
+{l:"TL",c:["gen"],v:"sec",g3:1,lv:"G2, Express (Sec 3)",t:"Manjula Ramasamy (2005). Strategies employed by secondary three students in learning Tamil as a second language",u:"https://hdl.handle.net/10497/1363",a:"nie",e:"Singapore",s:"NIE thesis"},
+{l:"TL",c:["la"],v:"sec",lv:"HTL",t:"Jeyarajadas Pandian (2018). Employing language structure and use in Kannadasan's lyrics to enhance Higher Tamil teaching",u:"https://hdl.handle.net/10497/20318",a:"rec",e:"Singapore",s:"NIE doctoral thesis"},
+{l:"ALL",c:["fw","comp","la"],v:"all",lv:"Low proficiency, indirect for G1",t:"Lim & Renandya (2020). Efficacy of written corrective feedback in writing instruction",u:"https://tesl-ej.org/pdf/ej95/a3.pdf",a:"open",e:"Meta-analysis",s:"TESL-EJ",n:"Lower-proficiency learners gained most. English L2, so an indirect guide."},
+{l:"ALL",c:["la"],v:"all",lv:"General",t:"Yousefi & Biria (2018). The effectiveness of L2 vocabulary instruction",u:"https://doi.org/10.1186/s40862-018-0062-2",a:"open",e:"Meta-analysis",s:"Asian-Pacific Journal of SFL Education",n:"Effects differ by proficiency."},
+{l:"ALL",c:["sp"],v:"all",lv:"Lower proficiency, indirect for G1",t:"Bibauw et al. (2022). Dialogue systems for language learning",u:"https://doi.org/10.64152/10125/73488",a:"open",e:"Meta-analysis",s:"Language Learning & Technology",n:"Relevant to chatbot practice."},
+{l:"ALL",c:["ra","sp"],v:"all",lv:"General",t:"Lee, Jang & Plonsky (2015). The effectiveness of second language pronunciation instruction",u:"https://doi.org/10.1093/applin/amu040",a:"pay",e:"Meta-analysis",s:"Applied Linguistics"},
 {l:"CL",c:["gen"],v:"sec",g3:1,lv:"G3",t:"SEC G3 (2027) Chinese Language syllabus, K320",u:"https://isomer-user-content.by.gov.sg/334/5ef8f46f-c9a2-4957-bb9d-14b534f2043b/K320_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
 {l:"ML",c:["gen"],v:"sec",g3:1,lv:"G3",t:"SEC G3 (2027) Malay Language syllabus, K321",u:"https://isomer-user-content.by.gov.sg/334/106330cd-a12e-4105-b051-061dc7f66fae/K321_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
 {l:"TL",c:["gen"],v:"sec",g3:1,lv:"G3",t:"SEC G3 (2027) Tamil Language syllabus, K322",u:"https://isomer-user-content.by.gov.sg/334/cbb3181e-50f3-4aa3-88c2-c69029b79d9b/K322_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
-{l:"ALL",c:["gen"],v:"sec",g3:1,lv:"G3",t:"SEC 2027 G3 syllabuses for school candidates",u:"https://www.seab.gov.sg/secondary-education-certificate-sec/g3-syllabuses-for-school-candidates-2027/",a:"open",e:"Official",s:"SEAB",n:"Index page. Use it if a PDF link above stops working."},
+{l:"ALL",c:["gen"],v:"sec",g3:1,lv:"G3, HMT",t:"SEC 2027 G3 syllabuses for school candidates",u:"https://www.seab.gov.sg/secondary-education-certificate-sec/g3-syllabuses-for-school-candidates-2027/",a:"open",e:"Official",s:"SEAB",n:"Index page. Use it if a PDF link above stops working."},
 {l:"ALL",c:["gen"],v:"sec",lv:"G1 to G3, HMT",t:"2021 G1, G2, G3 and Higher Mother Tongue Languages syllabus",u:"https://www.moe.gov.sg/media/files/secondary/fsbb/syllabus/mtl/72529fb3-d7dc-4762-b5da-aee8260e6b97.pdf",a:"open",e:"Official",s:"MOE"},
 {l:"ALL",c:["gen"],v:"sec",lv:"Sec",t:"Innovative practice, practice innovation: Re-envisioning mother tongue languages education in Singapore (Tan, Choong, Sivakumaran & Mohamed Aidil Subhan, Eds., 2019)",u:"https://www.sccl.sg/en/online-bookstore/journals/product/511-innovative-practice-practice-innovation-re-envisioning-mother-tongue-languages-education-in-singapore",a:"pay",e:"Singapore",s:"NIE and SCCL",n:"Edited volume covering CL, ML and TL. A good first read across the three languages."},
 {l:"ALL",c:["gen"],v:"all",lv:"Level not named",t:"Sangers et al. (2025). Meta-analysis of extensive reading effects on language learning",u:"https://doi.org/10.1007/s10648-025-10068-6",a:"open",e:"Meta-analysis",s:"Educational Psychology Review"},
@@ -264,7 +312,7 @@ const st={comp:"fw",lang:"all",lvl:"all"};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const langOk=x=>st.lang==="all"||x.l===st.lang||x.l==="ALL";
-const lvlOk=x=>st.lvl==="all"||(st.lvl==="g3"?x.g3:x.v===st.lvl||x.v==="all");
+const lvlOk=x=>st.lvl==="all"||(st.lvl==="g3"?x.g3:LVRE[st.lvl]?LVRE[st.lvl].test(x.lv):x.v===st.lvl||x.v==="all");
 const rank=x=>(x.g3?0:x.v==="sec"?1:x.v==="all"?2:3);
 const COLS=[...LANGS,"ALL"];
 const colName=l=>l==="ALL"?"Any language":l;
@@ -288,7 +336,9 @@ function chips(sel,opts,key){
  for(const [v,t] of opts){const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=t;b.setAttribute("aria-pressed",st[key]===v);
   b.onclick=()=>{st[key]=v;render()};g.append(b)}
 }
+const LVNOTE={g1:"G1 papers differ from these headings: writing is one short online post with no composition, and reading is tested by multiple choice. Oral carries the largest weighting. See the SEAB syllabus for each language.",hmt:"HMT papers differ from these headings: there is no listening paper, a summary task is added, and oral is a presentation with discussion. No link is filed under summary yet. See the SEAB syllabus for each language."};
 function render(){
+ const ln=$("#lvnote");ln.textContent=LVNOTE[st.lvl]||"";ln.hidden=!LVNOTE[st.lvl];
  matrix();
  chips("#f-comp",COMPS.concat(EXTRA),"comp");
  chips("#f-lang",[["all","All"],...COLS.map(l=>[l,colName(l)])],"lang");
