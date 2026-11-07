@@ -33,6 +33,7 @@ table.matrix{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
 .matrix button:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
 .matrix button.gap{background:var(--goldT);color:var(--goldD);font-weight:600}
 .matrix button.on{background:var(--navy);color:#fff}
+.copyt{cursor:pointer;font:inherit;text-decoration:underline}
 .note{color:var(--muted);font-size:13.5px;margin:8px 0 0;max-width:80ch}
 .controls{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 14px}
 .grp{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
@@ -89,6 +90,15 @@ footer p{max-width:80ch;margin:0 0 8px}
 <div class="grp" id="f-lvl" role="group" aria-label="Level"><span>Level</span></div>
 </div>
 <p class="note" id="lvnote" style="margin:0 0 10px" hidden></p>
+<div class="note" id="scclhow" hidden><strong>Opening an SCCL conference paper</strong><br>
+SCCL keeps these files for members. For 2026, SCCL asks you to join with the email you used to register for the conference.
+<ol style="margin:6px 0 0;padding-left:20px">
+<li>Sign in at <a href="https://www.sccl.sg/zh/" target="_blank" rel="noopener">sccl.sg</a>.</li>
+<li><strong>2026 papers:</strong> go to 资源 &gt; 第八届华文作为第二语言之教与学国际研讨会论文发表简报, then press the button on that page. <strong>2023 papers:</strong> press the paper's title here, which opens the 2023 list.</li>
+<li>Press Copy title here, paste it into 关键字 on the list, and press 搜索. If nothing shows, try two or three words from the title.</li>
+<li>Press 下载 next to the paper.</li>
+</ol>
+Use 关键字 on the list, not the search icon on the main SCCL site, which did not find these papers when we tried it. Abstracts are open to everyone.</div>
 <p id="count" aria-live="polite"></p>
 <ul class="list" id="list"></ul>
 <div id="cross"></div>
@@ -347,6 +357,8 @@ const D=[
 {l:"TL",c:["sp","oe"],v:"sec",lv:"Sec, course not stated",t:"Ramiah Kalimuthu (1996). Teacher questions and learner responses in secondary Tamil classes",u:"https://hdl.handle.net/10497/1572",a:"rec",e:"Singapore",s:"NIE repository"},
 {l:"TL",c:["sp"],v:"sec",lv:"Pri and Sec, course not stated",t:"Seetha Lakshmi (2014). Standard Spoken Tamil activities and teacher training",u:"https://hdl.handle.net/10497/25984",a:"rec",e:"Singapore",s:"NIE repository",n:"Tamil title on the record."},
 /* ---------- Research and official documents ---------- */
+{l:"CL",c:["gen"],v:"all",lv:"All levels",t:"SCCL older conference papers",u:"https://www.sccl.sg/zh/research/conference-papers",a:"chk",e:"Practice",s:"SCCL",n:"Under 研究与论文信息 > 会议论文. Not yet checked paper by paper."},
+{l:"CL",c:["gen"],v:"all",lv:"All levels",t:"《教研前线》e-journal",u:"https://www.sccl.sg/zh/resources/《教研前线》e-journal",a:"chk",e:"Practice",s:"SCCL",n:"Under 资源 > 教研前线. Not yet checked."},
 {l:"CL",c:["gen"],v:"sec",lv:"G2",t:"SEC G2 (2027) Chinese Language syllabus, K220",u:"https://isomer-user-content.by.gov.sg/334/f8644eca-cac1-4d39-92df-287e51e3e644/K220_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
 {l:"ML",c:["gen"],v:"sec",lv:"G2",t:"SEC G2 (2027) Malay Language syllabus, K221",u:"https://isomer-user-content.by.gov.sg/334/9f22f398-ac0a-4b3f-9883-2c51d1032b6d/K221_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
 {l:"TL",c:["gen"],v:"sec",lv:"G2",t:"SEC G2 (2027) Tamil Language syllabus, K222",u:"https://isomer-user-content.by.gov.sg/334/3195b526-4121-47bf-beba-ef8c8bbec0a5/K222_y27_sy.pdf",a:"open",e:"Official",s:"SEAB",n:"Official format and weighting for every component."},
@@ -450,7 +462,7 @@ function row(x){
  const a=ACC[x.a]||ACC.open;
  return `<li><a class="t" href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.t)}</a>`+
  (x.n?`<p class="n">${esc(x.n)}</p>`:"")+
- `<div class="tags"><span class="tag ${x.l}">${x.l==="ALL"?"All MTL":x.l}</span>${x.g3?'<span class="tag g3">G3</span>':""}<span class="tag">${esc(x.lv)}</span><span class="tag ${a[0]}">${a[1]}</span><span class="tag">${esc(x.e)}</span><span class="tag">${esc(x.s)}</span>${x.ft?`<span class="tag">${x.ft}</span>`:""}${x.ab?`<a class="tag" style="text-decoration:underline" href="${esc(x.ab)}" target="_blank" rel="noopener">${x.abl||"Abstract"}</a>`:""}</div></li>`;
+ `<div class="tags"><span class="tag ${x.l}">${x.l==="ALL"?"All MTL":x.l}</span>${x.g3?'<span class="tag g3">G3</span>':""}<span class="tag">${esc(x.lv)}</span><span class="tag ${a[0]}">${a[1]}</span><span class="tag">${esc(x.e)}</span><span class="tag">${esc(x.s)}</span>${x.ft?`<span class="tag">${x.ft}</span>`:""}${x.cp?`<button type="button" class="tag copyt" data-t="${esc(x.t)}">Copy title</button>`:""}${x.ab?`<a class="tag" style="text-decoration:underline" href="${esc(x.ab)}" target="_blank" rel="noopener">${x.abl||"Abstract"}</a>`:""}</div></li>`;
 }
 function matrix(){
  let h='<thead><tr><th scope="col">Component</th>'+COLS.map(l=>`<th scope="col">${colName(l)}</th>`).join("")+"</tr></thead><tbody>";
@@ -466,6 +478,7 @@ function chips(sel,opts,key){
   b.onclick=()=>{st[key]=v;render()};g.append(b)}
 }
 const LVNOTE={g1:"G1 papers differ from these headings: writing is one short online post with no composition, and reading is tested by multiple choice. Oral carries the largest weighting. See the SEAB syllabus for each language.",hmt:"HMT papers differ from these headings: there is no listening paper, a summary task is added, and oral is a presentation with discussion. No link is filed under summary yet. See the SEAB syllabus for each language."};
+document.addEventListener("click",e=>{const b=e.target.closest(".copyt");if(!b)return;const t=b.dataset.t;const done=()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy title",1500)};try{navigator.clipboard.writeText(t).then(done,()=>{b.textContent="Select the title to copy"})}catch(_){b.textContent="Select the title to copy"}});
 function render(){
  const ln=$("#lvnote");ln.textContent=LVNOTE[st.lvl]||"";ln.hidden=!LVNOTE[st.lvl];
  matrix();
@@ -476,6 +489,7 @@ function render(){
  const cn=COMPS.concat(EXTRA).find(c=>c[0]===st.comp)[1];
  $("#count").textContent=`${r.length} ${r.length===1?"link":"links"} for ${cn}`;
  $("#list").innerHTML=r.map(row).join("")||`<li class="empty" style="border:0">No specific link for this choice yet. Try the broader collections below, or change the level.</li>`;
+ $("#scclhow").hidden=!r.some(x=>x.cp);
  const g=D.filter(x=>x.c.includes("gen")&&langOk(x)&&lvlOk(x)).sort((a,b)=>rank(a)-rank(b));
  $("#cross").innerHTML=g.length?`<h3 class="sub">Useful across all components</h3><ul class="list">${g.map(row).join("")}</ul>`:"";
 }
